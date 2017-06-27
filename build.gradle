@@ -1,0 +1,33 @@
+plugins {
+    id 'org.spongepowered.plugin' version '0.7'
+    id "com.qixalite.spongestart" version "1.4.3"
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
+group = pluginGroup
+version = pluginVersion
+
+spongestart{
+    eula = true
+
+    //optional configs
+    spongeForgeBuild = '2156'
+    forgeServerFolder = 'run/forge'
+}
+
+dependencies {
+    compile 'org.spongepowered:spongeapi:5.0.0'
+    compile files ('libs/ConversationLib-1.0.0.jar')
+}
+
+shadowJar {
+
+}
+
+configurations {
+    runtime.exclude module: 'spongeapi'
+}
+
+build.dependsOn(shadowJar)
+
+sponge.plugin.id = pluginId
